@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Controllers;
+
+use App\Controllers\BaseController;
+use CodeIgniter\HTTP\ResponseInterface;
+
+use CodeIgniter\API\ResponseTrait;
+use App\Models\UserModel;
+
+class Users extends BaseController
+{
+    use ResponseTrait;
+
+    public function index()
+    {
+        $users = new UserModel;
+        return $this->respond(['users' => $users->findAll()], 200);
+    }
+}
